@@ -6,7 +6,7 @@ cnx = mysql.connector.connect(
     host="localhost",
     user="root",
     password="root",
-    database="pandeyji_eatery"
+    database="himalaya-db"
 )
 
 def insert_order_item(food_item, quantity, order_id):
