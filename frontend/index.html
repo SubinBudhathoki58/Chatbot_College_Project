@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taste of Himalaya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1 class="floating-text">
+                    <span>Taste</span>
+                    <span>of</span>
+                    <span>Himalaya</span>
+                </h1>
+                <p class="slogan">"Your Gateway to Authentic Nepali Cuisine!"</p>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <h2>Our Flavorful Menu</h2>
+        <div class="menu-items">
+            <div class="menu-item">
+                <img src="./img/momos.jpg" alt="Momo">
+                <p>Momo</p>
+                <div class="price-tag">रु 149.99</div>
+            </div>
+            <div class="menu-item">
+                <img src="./img/chicken-thukpa.webp" alt="Thukpa">
+                <p>Thukpa</p>
+                <div class="price-tag">रु 99.99</div>
+            </div>
+            <div class="menu-item">
+                <img src="./img/dal%20bhat.jpg" alt="Dal Bhat">
+                <p>Dal Bhat</p>
+                <div class="price-tag">रु 199.99</div>
+            </div>
+            <div class="menu-item">
+                <img src="./img/sel%20roti.jpg" alt="Sel Roti">
+                <p>Sel Roti</p>
+                <div class="price-tag">रु 89.99</div>
+            </div>
+            <div class="menu-item">
+                <img src="./img/chowmein.jpg" alt="Chowmein">
+                <p>Chowmein</p>
+                <div class="price-tag">रु 129.99</div>
+            </div>
+            <div class="menu-item">
+                <img src="./img/gundruk.jpg" alt="Gundruk">
+                <p>Gundruk</p>
+                <div class="price-tag">रु 79.99</div>
+            </div>
+            <div class="menu-item">
+                <img src="./img/aloo%20tma.jpg" alt="Aloo Tama">
+                <p>Aloo Tama</p>
+                <div class="price-tag">रु 159.99</div>
+            </div>
+            <div class="menu-item">
+                <img src="./img/sekuwa.jpg" alt="Sekuwa">
+                <p>Sekuwa</p>
+                <div class="price-tag">रु 249.99</div>
+            </div>
+            <div class="menu-item">
+                <img src="./img/Juju%20Dhau.jpg" alt="Juju Dhau">
+                <p>Juju Dhau</p>
+                <div class="price-tag">रु 99.99</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Visit Us</h2>
+        <p>Location: Bhadrapur, Jhapa, Nepal</p>
+        <p>Contact: <strong>9825969872</strong></p>
+    </section>
+
+    <!-- Dialogflow Chatbot -->
+    <div class="chatbot-container">
+        <iframe
+            id="chatbotIframe"
+            width="350"
+            height="430"
+            allow="microphone;"
+            src="https://console.dialogflow.com/api-client/demo/embedded/18238ca4-a7e7-4fce-a4c6-03da1f32da0a">
+        </iframe>
+    </div>
+
+    <!-- Auto Triggering the Chatbot -->
+    <script>
+        window.onload = function () {
+            const chatbotIframe = document.getElementById("chatbotIframe");
+
+            if (chatbotIframe) {
+                // Triggering the default welcome intent automatically
+                setTimeout(() => {
+                    // Sending a message to trigger the welcome intent in Dialogflow
+                    const message = {
+                        text: "Hi", // This triggers the welcome intent in Dialogflow
+                        languageCode: 'en', // Default language
+                    };
+                    chatbotIframe.contentWindow.postMessage(message, '*');
+                }, 1500);
+            }
+        };
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Taste of Himalaya. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
