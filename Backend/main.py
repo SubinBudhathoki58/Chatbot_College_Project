@@ -64,7 +64,7 @@ def complete_order(parameters: dict, session_id: str):
             order_total = db_helper.get_total_order_price(order_id)
 
             fulfillment_text = f"Awesome. We have placed your order. " \
-                               f"Here is your order id # {order_id}. " \
+                               f"Here is your order id : {order_id}. " \
                                f"Your order total is {order_total} which you can pay at the time of delivery!"
 
         del inprogress_orders[session_id]
