@@ -9,6 +9,10 @@ app = FastAPI()
 inprogress_orders = {}
 
 
+@app.get("/")
+async def health_check():
+    return {"status": "ok", "message": "Chatbot backend is running"}
+
 @app.post("/")
 async def handle_request(request: Request):
     # Retrieve the JSON data from the request

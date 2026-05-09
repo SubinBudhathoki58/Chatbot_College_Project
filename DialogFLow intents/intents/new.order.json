@@ -1,0 +1,41 @@
+{
+  "id": "0133c221-e7e1-4b51-80de-69cd3297d2b7",
+  "name": "new.order",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "ongoing-order",
+          "lifespan": 5
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "en",
+          "speech": [
+            "\"Ok, starting a new order. You can say things like \u0027I want two plates of Momo and one bowl of Thukpa.\u0027 Make sure to specify a quantity for every food item! Also, we have only the following items on our menu: Momo, Thukpa, Dal Bhat, Sel Roti, Chowmein, Gundruk, Aloo Tama, Sekuwa, and Juju Dhau.\"",
+            "\"Starting a new order. Specify food items and quantities. For example, you can say, \u0027I would like to order two plates of Momo and one bowl of Thukpa.\u0027 Also, we have only the following items on our menu: Momo, Thukpa, Dal Bhat, Sel Roti, Chowmein, Gundruk, Aloo Tama, Sekuwa, and Juju Dhau.\""
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

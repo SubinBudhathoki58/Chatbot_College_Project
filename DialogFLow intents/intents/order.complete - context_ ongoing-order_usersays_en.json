@@ -1,0 +1,106 @@
+[
+  {
+    "id": "d7609aac-5cac-4ab3-b712-6aee94fb52e3",
+    "data": [
+      {
+        "text": "Done",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9c5499f8-84a5-46ff-92f2-23058fe740d5",
+    "data": [
+      {
+        "text": "ok",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "08f03e66-2b3f-4014-92ca-545d5810c797",
+    "data": [
+      {
+        "text": "No",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2091311c-0b31-4599-89c4-6995200d385c",
+    "data": [
+      {
+        "text": "Nope",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2e230c8e-1c33-4a58-84b7-b4546f61c12c",
+    "data": [
+      {
+        "text": "this much",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "eccf35d4-08c5-4d22-a04e-9fa4c198a65a",
+    "data": [
+      {
+        "text": "Place an order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f99ea8db-cc0c-499e-a30a-ceaab8db3d34",
+    "data": [
+      {
+        "text": "That\u0027s all i need.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "fbd5a67a-5088-4630-95b9-2318c7934532",
+    "data": [
+      {
+        "text": "That\u0027s it",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "en",
+    "updated": 0
+  }
+]

@@ -1,0 +1,119 @@
+[
+  {
+    "id": "25c0d8fc-73f9-4a89-8071-a60b54c77470",
+    "data": [
+      {
+        "text": "greeting",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "b63d2e3e-d70b-4ec2-b4f2-5d906f43546e",
+    "data": [
+      {
+        "text": "yo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "2dddd994-3368-44ab-9be8-f3a3ad9cd900",
+    "data": [
+      {
+        "text": "i want to order",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "eeb92340-a41e-4597-802f-91e0271bf7ef",
+    "data": [
+      {
+        "text": "availabe here",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "4d62d179-d9cb-4780-ae8c-dcc51f1ba4ca",
+    "data": [
+      {
+        "text": "anyone",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "3fde4ef1-1e3d-4c6c-b1eb-c58897712ce7",
+    "data": [
+      {
+        "text": "namaste",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d6532af5-4ad8-4c82-8c5d-62e9f7225330",
+    "data": [
+      {
+        "text": "hello",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "ae91d627-2624-4939-a16a-67c874683871",
+    "data": [
+      {
+        "text": "hi",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "9c8ef437-cea8-4482-891f-f35deec2e7b4",
+    "data": [
+      {
+        "text": "Hey",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

@@ -1,0 +1,816 @@
+[
+  {
+    "id": "fa95eebf-bcaa-450f-9fb3-86e58e1252c6",
+    "data": [
+      {
+        "text": "Thukpa",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": " also",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "50f198eb-a64e-4c67-8f0c-94c001ae57ac",
+    "data": [
+      {
+        "text": "Moreover, include ",
+        "userDefined": false
+      },
+      {
+        "text": "Gundruk",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "achar",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "e5e00c87-8fe2-4d68-b7f6-46170091c485",
+    "data": [
+      {
+        "text": "Oh yes, add ",
+        "userDefined": false
+      },
+      {
+        "text": "one",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Sel Roti",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": " as well.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "819fb8de-fafe-4ebb-8a3b-6b0402726a4a",
+    "data": [
+      {
+        "text": "Additionally, I\u0027d like ",
+        "userDefined": false
+      },
+      {
+        "text": "2",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Juju Dhau",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f3302cb4-65cb-4ad1-9fb1-64027c789cf7",
+    "data": [
+      {
+        "text": "I\u0027d like to order ",
+        "userDefined": false
+      },
+      {
+        "text": "two",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " plates of ",
+        "userDefined": false
+      },
+      {
+        "text": "Momo",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", ",
+        "userDefined": false
+      },
+      {
+        "text": "one",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Chowmein",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", and ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Juju Dhau",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", please.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "abeee184-cde7-449b-bfe1-0e7247817e7b",
+    "data": [
+      {
+        "text": "Can you please get me ",
+        "userDefined": false
+      },
+      {
+        "text": "two",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " servings of ",
+        "userDefined": false
+      },
+      {
+        "text": "Momo",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", ",
+        "userDefined": false
+      },
+      {
+        "text": "one",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Chowmein",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", and ",
+        "userDefined": false
+      },
+      {
+        "text": "one",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Juju Dhau",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "99417f19-d56c-43ef-8a42-7c935d33a94e",
+    "data": [
+      {
+        "text": "Please prepare",
+        "userDefined": false
+      },
+      {
+        "text": " 2",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " portions of ",
+        "userDefined": false
+      },
+      {
+        "text": "Momo",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", along with ",
+        "userDefined": false
+      },
+      {
+        "text": "one",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Chowmein",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": " and ",
+        "userDefined": false
+      },
+      {
+        "text": "1",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Juju Dhau",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": " for me.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "a9f5b1bb-ef67-4000-a82a-5d9307cf578c",
+    "data": [
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " plates of ",
+        "userDefined": false
+      },
+      {
+        "text": "Dal Bhat",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", ",
+        "userDefined": false
+      },
+      {
+        "text": "2",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Juju Dhau",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", ",
+        "userDefined": false
+      },
+      {
+        "text": "1",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Sel Roti.",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "1d1eed1f-afa3-42a6-9b85-5e72fc265ec1",
+    "data": [
+      {
+        "text": "Can I get ",
+        "userDefined": false
+      },
+      {
+        "text": "2",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " plates of ",
+        "userDefined": false
+      },
+      {
+        "text": "Momo",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", along with ",
+        "userDefined": false
+      },
+      {
+        "text": "one",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Chowmein",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": " and ",
+        "userDefined": false
+      },
+      {
+        "text": "1",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Juju Dhau",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "accfa059-60f5-4298-aeca-bda8d327fa49",
+    "data": [
+      {
+        "text": "I\u0027ll take",
+        "userDefined": false
+      },
+      {
+        "text": " 2",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " orders of ",
+        "userDefined": false
+      },
+      {
+        "text": "Momo",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", ",
+        "userDefined": false
+      },
+      {
+        "text": "one",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Chowmein",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", and ",
+        "userDefined": false
+      },
+      {
+        "text": "1",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Juju Dhau",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", if you don\u0027t mind.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f9fdc45c-03e2-4fa6-beca-c5ea43485623",
+    "data": [
+      {
+        "text": "I want ",
+        "userDefined": false
+      },
+      {
+        "text": "1",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Juju Dhau",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", ",
+        "userDefined": false
+      },
+      {
+        "text": "2",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " plates of ",
+        "userDefined": false
+      },
+      {
+        "text": "Momo",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", and ",
+        "userDefined": false
+      },
+      {
+        "text": "one",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Sel Roti",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": "—do it fast, please.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d2c9e575-0225-4742-96ea-73839c4a952f",
+    "data": [
+      {
+        "text": "In addition, add ",
+        "userDefined": false
+      },
+      {
+        "text": "1",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " plate of ",
+        "userDefined": false
+      },
+      {
+        "text": "Aloo Tama",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": " and ",
+        "userDefined": false
+      },
+      {
+        "text": "2",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " plates of ",
+        "userDefined": false
+      },
+      {
+        "text": "Thukpa.",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "08d6b024-18b9-45fb-af63-222a79d7afba",
+    "data": [
+      {
+        "text": "Moreover, include ",
+        "userDefined": false
+      },
+      {
+        "text": "2",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Juju Dhau",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "bfd96b27-f72b-4634-a07b-c8611f2b8ebf",
+    "data": [
+      {
+        "text": "Also, please give me ",
+        "userDefined": false
+      },
+      {
+        "text": "2",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Juju Dhau",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "80ca9890-1820-462a-8236-bab258dfd24a",
+    "data": [
+      {
+        "text": "2",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " plates of ",
+        "userDefined": false
+      },
+      {
+        "text": "Thukpa",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ", and okay, let\u0027s add ",
+        "userDefined": false
+      },
+      {
+        "text": "one",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Dal Bhat",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": " too.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "f1f62a8b-5410-4ed1-a800-af5c76c9f4fa",
+    "data": [
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      },
+      {
+        "text": " plates of ",
+        "userDefined": false
+      },
+      {
+        "text": "Dal Bhat",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": true
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

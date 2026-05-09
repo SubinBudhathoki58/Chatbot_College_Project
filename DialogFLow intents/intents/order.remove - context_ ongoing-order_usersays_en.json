@@ -1,0 +1,63 @@
+[
+  {
+    "id": "1f80585c-a641-44f4-91ee-cbeb98f67546",
+    "data": [
+      {
+        "text": "remove ",
+        "userDefined": false
+      },
+      {
+        "text": "momo",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": false
+      },
+      {
+        "text": ".",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "1467d7dd-7e36-4469-bc7c-17263199684f",
+    "data": [
+      {
+        "text": "exclude ",
+        "userDefined": false
+      },
+      {
+        "text": "thukpa",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  },
+  {
+    "id": "d97d56aa-7d4c-467f-89d3-86e1a30b93d0",
+    "data": [
+      {
+        "text": "Remove ",
+        "userDefined": false
+      },
+      {
+        "text": "thukpa.",
+        "meta": "@food-item",
+        "alias": "food-item",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "en",
+    "updated": 0
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "value": "Momo",
+    "synonyms": [
+      "Momo",
+      "momos",
+      "jhol momo",
+      "chicken momo",
+      "veg momo",
+      "buff momo"
+    ]
+  },
+  {
+    "value": "Chowmein",
+    "synonyms": [
+      "Chowmein",
+      "chicken chowmein",
+      "veg chowmein",
+      "buff chowmein"
+    ]
+  },
+  {
+    "value": "Juju Dhau",
+    "synonyms": [
+      "Juju",
+      "Dhau",
+      "juju dhau",
+      "jujudhau"
+    ]
+  },
+  {
+    "value": "Dal Bhat",
+    "synonyms": [
+      "dal bhat",
+      "rice",
+      "dal chawal",
+      "bhat",
+      "veg khana",
+      "dal"
+    ]
+  },
+  {
+    "value": "Sel Roti",
+    "synonyms": [
+      "Sel",
+      "Roti",
+      "sel roti",
+      "roti",
+      "syal",
+      "selroti"
+    ]
+  },
+  {
+    "value": "Aloo Tama",
+    "synonyms": [
+      "Aloo",
+      "tama",
+      "aloo tama",
+      "alu tama",
+      "aalu tama",
+      "alu",
+      "Tama"
+    ]
+  },
+  {
+    "value": "Thukpa",
+    "synonyms": [
+      "Thukpa",
+      "thukpa",
+      "veg thukpa",
+      "chicken thukpa",
+      "thuppa",
+      "thupa"
+    ]
+  },
+  {
+    "value": "Gundruk",
+    "synonyms": [
+      "gundruk",
+      "achar",
+      "gundruk ko achar",
+      "Gundruk"
+    ]
+  },
+  {
+    "value": "Sekuwa",
+    "synonyms": [
+      "Sekuwa",
+      "sekuwa"
+    ]
+  }
+]
