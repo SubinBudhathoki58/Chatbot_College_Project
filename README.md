@@ -2,6 +2,10 @@
 
 An NLP-powered food ordering chatbot built with Dialogflow and FastAPI. Users can place orders, modify them, track delivery status, and complete purchases using natural language conversation.
 
+## 🚀 Live Demo
+
+**Try the chatbot here:** [nlp-chatbot.pages.dev](https://nlp-chatbot.pages.dev)
+
 ## Overview
 
 This is a conversational AI system designed for restaurant food ordering. Instead of navigating through menus, customers just chat with the bot naturally:
@@ -21,10 +25,10 @@ The chatbot processes user input through Dialogflow's NLP engine, which extracts
 
 ```
 User Input → Dialogflow NLP → Extract Intent & Items → FastAPI Backend → MySQL Database
-                                                              ↓
-                                                      Order Validation & Storage
-                                                              ↓
-                                                      Response to User
+                                                               ↓
+                                                       Order Validation & Storage
+                                                               ↓
+                                                       Response to User
 ```
 
 ## Features
