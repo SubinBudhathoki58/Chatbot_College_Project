@@ -2,7 +2,7 @@
 
 An NLP-powered food ordering chatbot built with Dialogflow and FastAPI. Users can place orders, modify them, track delivery status, and complete purchases using natural language conversation.
 
-## 🚀 Live Demo
+##  Live Demo
 
 **Try the chatbot here:** [nlp-chatbot.pages.dev](https://nlp-chatbot.pages.dev)
 
