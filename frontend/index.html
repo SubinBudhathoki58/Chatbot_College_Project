@@ -1,127 +1,1722 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taste of Himalaya</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taste of Himalaya</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F5EDD6;
+  --warm: #E8D5A3;
+  --spice: #C0392B;
+  --spice-dark: #8B1A1A;
+  --earth: #5C3317;
+  --bark: #3B2010;
+  --smoke: #1A0F07;
+  --gold: #D4A017;
+  --sage: #7A8C5C;
+  --mist: rgba(245, 237, 214, 0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--smoke);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── NOISE TEXTURE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ─── HERO ─── */
+header {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(192,57,43,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 20% 80%, rgba(90,50,20,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 20%, rgba(212,160,23,0.08) 0%, transparent 60%),
+    linear-gradient(170deg, #1A0F07 0%, #2C1810 40%, #1A0F07 100%);
+  z-index: 0;
+}
+
+.mountain-silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  opacity: 0.15;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s, padding 0.4s;
+}
+
+nav.scrolled {
+  background: rgba(26,15,7,0.95);
+  backdrop-filter: blur(12px);
+  padding: 1rem 4rem;
+  border-bottom: 0.5px solid rgba(212,160,23,0.2);
+}
+
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--warm);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.3s forwards;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(4rem, 10vw, 9rem);
+  line-height: 0.9;
+  font-weight: 700;
+  opacity: 0;
+  animation: fadeUp 1s 0.5s forwards;
+}
+
+.hero-title .line-of { font-style: italic; font-weight: 400; color: var(--gold); }
+
+.hero-sub {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: rgba(245,237,214,0.6);
+  letter-spacing: 0.08em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+
+.hero-cta {
+  display: inline-block;
+  margin-top: 3rem;
+  padding: 1rem 3rem;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: all 0.4s;
+  opacity: 0;
+  animation: fadeUp 0.8s 1s forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+
+.hero-cta:hover { color: var(--smoke); }
+.hero-cta:hover::before { transform: scaleX(1); }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeIn 1s 1.5s forwards;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s infinite;
+}
+
+.scroll-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245,237,214,0.4);
+}
+
+/* ─── SECTION SHARED ─── */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+}
+
+/* ─── MENU SECTION ─── */
+#menu {
+  padding: 8rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.menu-header {
+  margin-bottom: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.menu-header-left { max-width: 500px; }
+
+.menu-tagline {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: rgba(245,237,214,0.5);
+  line-height: 1.7;
+}
+
+.menu-filter {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.25rem;
+  border: 0.5px solid rgba(245,237,214,0.2);
+  background: transparent;
+  color: rgba(245,237,214,0.5);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2rem;
+  transition: all 0.3s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(212,160,23,0.08);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  background: rgba(245,237,214,0.08);
+}
+
+.menu-item {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  cursor: pointer;
+  background: #2C1810;
+}
+
+.menu-item:hover .item-img { transform: scale(1.08); }
+.menu-item:hover .item-overlay { opacity: 1; }
+.menu-item:hover .item-meta { transform: translateY(0); opacity: 1; }
+
+.item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: brightness(0.75) saturate(0.9);
+}
+
+.item-img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  background: linear-gradient(135deg, #2C1810, #3B2010);
+}
+
+.item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26,15,7,0.97) 0%, rgba(26,15,7,0.5) 50%, rgba(26,15,7,0.15) 100%);
+  opacity: 0.7;
+  transition: opacity 0.4s;
+}
+
+.item-base-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(26,15,7,0.95), transparent);
+}
+
+.item-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.item-price {
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+.item-meta {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  transform: translateY(-8px);
+  opacity: 0;
+  transition: all 0.4s;
+}
+
+.view-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: var(--gold);
+  color: var(--smoke);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 2rem;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* featured item (first one spans 2 cols) */
+.menu-item.featured { grid-column: span 2; aspect-ratio: auto; min-height: 400px; }
+
+/* ─── MODAL ─── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,5,2,0.92);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #1F1008;
+  border: 0.5px solid rgba(212,160,23,0.2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  transform: translateY(30px) scale(0.97);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.modal-backdrop.open .modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-img-side {
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.modal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8) saturate(0.9);
+}
+
+.modal-img-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7rem;
+  background: linear-gradient(135deg, #2C1810, #3B2010);
+}
+
+.modal-img-tag {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  padding: 0.35rem 0.9rem;
+  background: var(--spice);
+  color: var(--cream);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.modal-content {
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modal-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  line-height: 1.1;
+}
+
+.modal-price-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.modal-price {
+  font-size: 1.5rem;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.modal-tag {
+  font-size: 0.65rem;
+  padding: 0.25rem 0.75rem;
+  border: 0.5px solid var(--sage);
+  color: var(--sage);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2rem;
+}
+
+.modal-desc {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(245,237,214,0.65);
+}
+
+.modal-divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(212,160,23,0.4);
+}
+
+.modal-ingredients h4 {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245,237,214,0.4);
+  margin-bottom: 0.75rem;
+}
+
+.ingredient-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pill {
+  padding: 0.3rem 0.75rem;
+  border: 0.5px solid rgba(245,237,214,0.15);
+  font-size: 0.75rem;
+  color: rgba(245,237,214,0.6);
+  border-radius: 2rem;
+}
+
+.modal-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1.25rem;
+  background: rgba(245,237,214,0.03);
+  border: 0.5px solid rgba(245,237,214,0.07);
+}
+
+.stat { text-align: center; }
+.stat-val { font-size: 1.1rem; font-weight: 500; color: var(--cream); }
+.stat-lbl { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,237,214,0.35); margin-top: 0.25rem; }
+
+.modal-order-btn {
+  padding: 1rem;
+  background: var(--spice);
+  color: var(--cream);
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: auto;
+}
+
+.modal-order-btn:hover { background: var(--spice-dark); }
+
+.modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 36px;
+  height: 36px;
+  background: rgba(245,237,214,0.1);
+  border: none;
+  color: var(--cream);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s;
+  z-index: 10;
+}
+
+.modal-close:hover { background: rgba(245,237,214,0.2); }
+
+/* ─── ABOUT / STORY ─── */
+#about {
+  padding: 10rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.about-visual {
+  position: relative;
+}
+
+.about-card {
+  aspect-ratio: 3/4;
+  background: linear-gradient(135deg, #2C1810 0%, #3B2010 50%, #2C1810 100%);
+  border: 0.5px solid rgba(212,160,23,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(192,57,43,0.2) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(212,160,23,0.1) 0%, transparent 50%);
+}
+
+.about-float-stat {
+  position: absolute;
+  bottom: -1.5rem;
+  right: -1.5rem;
+  background: var(--spice);
+  padding: 2rem;
+  text-align: center;
+}
+
+.about-float-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.about-float-lbl {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+  opacity: 0.8;
+}
+
+.about-text { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.about-body {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: rgba(245,237,214,0.6);
+}
+
+.about-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.value-item {
+  padding: 1.25rem;
+  border: 0.5px solid rgba(212,160,23,0.15);
+  transition: border-color 0.3s;
+}
+
+.value-item:hover { border-color: var(--gold); }
+
+.value-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.value-name { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; }
+.value-desc { font-size: 0.75rem; color: rgba(245,237,214,0.4); margin-top: 0.25rem; line-height: 1.5; }
+
+/* ─── MARQUEE ─── */
+.marquee-section {
+  border-top: 0.5px solid rgba(245,237,214,0.07);
+  border-bottom: 0.5px solid rgba(245,237,214,0.07);
+  padding: 1.5rem 0;
+  overflow: hidden;
+  background: rgba(212,160,23,0.04);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 0;
+  animation: marquee 20s linear infinite;
+  white-space: nowrap;
+}
+
+.marquee-item {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(245,237,214,0.3);
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.marquee-item::after {
+  content: '✦';
+  font-style: normal;
+  font-size: 0.5rem;
+  color: var(--gold);
+}
+
+/* ─── CONTACT ─── */
+#contact {
+  padding: 8rem 4rem;
+  background: linear-gradient(to bottom, transparent, rgba(192,57,43,0.05));
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.contact-info-block { display: flex; flex-direction: column; gap: 1rem; }
+
+.contact-detail {
+  padding: 1.5rem;
+  border-left: 2px solid var(--spice);
+  background: rgba(245,237,214,0.02);
+  transition: background 0.3s;
+}
+
+.contact-detail:hover { background: rgba(245,237,214,0.05); }
+
+.contact-detail-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245,237,214,0.35);
+  margin-bottom: 0.3rem;
+}
+
+.contact-detail-value {
+  font-size: 1rem;
+  color: var(--cream);
+  font-weight: 500;
+}
+
+.contact-map-placeholder {
+  aspect-ratio: 4/3;
+  background: #2C1810;
+  border: 0.5px solid rgba(212,160,23,0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-map-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(192,57,43,0.15) 0%, transparent 60%);
+}
+
+.map-pin { font-size: 3rem; position: relative; z-index: 1; }
+
+.map-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: rgba(245,237,214,0.5);
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 0.5px solid rgba(245,237,214,0.08);
+  padding: 2.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: rgba(245,237,214,0.3);
+}
+
+/* ─── TOAST ─── */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--spice);
+  color: var(--cream);
+  padding: 1rem 2rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  z-index: 500;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ═══════════════════════════════════════════
+   ─── CHATBOT — ENHANCED UI ───
+   ═══════════════════════════════════════════ */
+
+.chatbot-wrapper {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+/* ── Teaser bubble ── */
+.chatbot-teaser {
+  position: relative;
+  background: #1F1008;
+  border: 1px solid rgba(212,160,23,0.45);
+  border-radius: 18px 18px 4px 18px;
+  padding: 14px 16px 12px;
+  width: 240px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* gold shimmer border */
+.chatbot-teaser::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 18px 18px 4px 18px;
+  background: linear-gradient(135deg, rgba(212,160,23,0.6) 0%, rgba(192,57,43,0.3) 50%, rgba(212,160,23,0.1) 100%);
+  z-index: -1;
+}
+
+.chatbot-teaser.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+.chatbot-teaser.hiding {
+  opacity: 0;
+  transform: translateY(8px) scale(0.95);
+  pointer-events: none;
+}
+
+.teaser-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: rgba(245,237,214,0.35);
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 4px;
+  transition: color 0.2s;
+}
+.teaser-close:hover { color: rgba(245,237,214,0.8); }
+
+.teaser-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding-right: 18px;
+}
+
+.teaser-avatar {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  background: var(--spice);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  border: 1px solid rgba(212,160,23,0.4);
+}
+
+.teaser-name {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+.teaser-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.62rem;
+  color: rgba(245,237,214,0.4);
+}
+
+.teaser-dot {
+  width: 6px;
+  height: 6px;
+  background: #4CAF50;
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+
+.teaser-msg {
+  font-size: 0.8rem;
+  color: rgba(245,237,214,0.85);
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+
+.teaser-msg strong { color: var(--cream); }
+
+.teaser-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.teaser-chip {
+  background: rgba(212,160,23,0.1);
+  border: 0.5px solid rgba(212,160,23,0.4);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 0.68rem;
+  color: var(--gold);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.teaser-chip:hover {
+  background: rgba(212,160,23,0.22);
+  border-color: var(--gold);
+  color: var(--cream);
+}
+
+/* ── Chat window ── */
+.chatbot-container {
+  width: 360px;
+  height: 480px;
+  background: var(--smoke);
+  border: 1px solid rgba(212,160,23,0.35);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 0 1px rgba(212,160,23,0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  display: none;
+  opacity: 0;
+  transform: translateY(16px) scale(0.97);
+  transition: opacity 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.chatbot-container.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Custom header bar above iframe */
+.chatbot-header {
+  background: linear-gradient(135deg, #2C1810, #1F1008);
+  border-bottom: 0.5px solid rgba(212,160,23,0.25);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chatbot-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chatbot-header-avatar {
+  width: 30px;
+  height: 30px;
+  background: var(--spice);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border: 1px solid rgba(212,160,23,0.35);
+}
+
+.chatbot-header-info {}
+.chatbot-header-name {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: 0.03em;
+}
+.chatbot-header-sub {
+  font-size: 0.62rem;
+  color: rgba(245,237,214,0.4);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 1px;
+}
+.chatbot-header-sub .dot {
+  width: 5px; height: 5px;
+  background: #4CAF50;
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+
+.chatbot-header-close {
+  background: rgba(245,237,214,0.08);
+  border: 0.5px solid rgba(245,237,214,0.15);
+  color: rgba(245,237,214,0.5);
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.chatbot-header-close:hover {
+  background: rgba(245,237,214,0.15);
+  color: var(--cream);
+}
+
+.chatbot-container iframe {
+  border: none;
+  width: 100%;
+  height: calc(100% - 52px);
+}
+
+/* ── Toggle button ── */
+.chatbot-toggle {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  background: var(--spice);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1.5px solid var(--gold);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.chatbot-toggle:hover {
+  transform: scale(1.08);
+  background: var(--spice-dark);
+}
+
+.chatbot-toggle svg {
+  width: 26px;
+  height: 26px;
+  fill: var(--cream);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.chatbot-toggle .icon-chat { position: absolute; }
+.chatbot-toggle .icon-close {
+  position: absolute;
+  opacity: 0;
+  transform: rotate(-90deg);
+}
+
+.chatbot-toggle.open .icon-chat { opacity: 0; transform: rotate(90deg); }
+.chatbot-toggle.open .icon-close { opacity: 1; transform: rotate(0deg); }
+
+/* Pulse ring */
+.chatbot-toggle::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(192,57,43,0.5);
+  animation: ringPulse 2.5s ease-out infinite;
+}
+
+/* Notification badge */
+.chat-notif-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  background: var(--gold);
+  border-radius: 50%;
+  border: 2px solid var(--smoke);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--smoke);
+  animation: badgePop 0.4s 4.5s both;
+  opacity: 0;
+}
+
+/* Label tag next to button */
+.chat-label-tag {
+  position: absolute;
+  right: 74px;
+  bottom: 18px;
+  background: var(--gold);
+  color: var(--smoke);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 5px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(6px);
+  animation: labelSlide 0.5s 5.5s forwards;
+  pointer-events: none;
+}
+
+.chat-label-tag::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-left-color: var(--gold);
+  border-right: none;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes ringPulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  70% { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+@keyframes badgePop {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes labelSlide {
+  from { opacity: 0; transform: translateX(6px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 2rem; }
+  nav.scrolled { padding: 0.8rem 2rem; }
+  .menu-grid { grid-template-columns: repeat(2, 1fr); }
+  .menu-item.featured { grid-column: span 2; }
+  #menu, #about, #contact { padding: 5rem 2rem; }
+  #about, #contact { grid-template-columns: 1fr; gap: 3rem; }
+  .menu-header { flex-direction: column; gap: 2rem; align-items: flex-start; }
+  .modal { grid-template-columns: 1fr; }
+  .modal-img-side { min-height: 250px; }
+  .modal-img-placeholder { min-height: 250px; }
+}
+
+@media (max-width: 600px) {
+  .menu-grid { grid-template-columns: 1fr; }
+  .menu-item.featured { grid-column: span 1; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; }
+  .chatbot-container { width: calc(100vw - 40px); }
+  .chatbot-teaser { width: 210px; }
+  .chat-label-tag { display: none; }
+}
+</style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <h1 class="floating-text">
-                    <span>Taste</span>
-                    <span>of</span>
-                    <span>Himalaya</span>
-                </h1>
-                <p class="slogan">"Your Gateway to Authentic Nepali Cuisine!"</p>
-            </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#menu">Menu</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#about">About</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-brand">Taste of Himalaya</div>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <!-- Menu Section -->
-    <section id="menu" class="menu">
-        <h2>Our Flavorful Menu</h2>
-        <div class="menu-items">
-            <div class="menu-item">
-                <img src="./img/momos.jpg" alt="Momo">
-                <p>Momo</p>
-                <div class="price-tag">रु 149.99</div>
-            </div>
-            <div class="menu-item">
-                <img src="./img/chicken-thukpa.webp" alt="Thukpa">
-                <p>Thukpa</p>
-                <div class="price-tag">रु 99.99</div>
-            </div>
-            <div class="menu-item">
-                <img src="./img/dal%20bhat.jpg" alt="Dal Bhat">
-                <p>Dal Bhat</p>
-                <div class="price-tag">रु 199.99</div>
-            </div>
-            <div class="menu-item">
-                <img src="./img/sel%20roti.jpg" alt="Sel Roti">
-                <p>Sel Roti</p>
-                <div class="price-tag">रु 89.99</div>
-            </div>
-            <div class="menu-item">
-                <img src="./img/chowmein.jpg" alt="Chowmein">
-                <p>Chowmein</p>
-                <div class="price-tag">रु 129.99</div>
-            </div>
-            <div class="menu-item">
-                <img src="./img/gundruk.jpg" alt="Gundruk">
-                <p>Gundruk</p>
-                <div class="price-tag">रु 79.99</div>
-            </div>
-            <div class="menu-item">
-                <img src="./img/aloo%20tma.jpg" alt="Aloo Tama">
-                <p>Aloo Tama</p>
-                <div class="price-tag">रु 159.99</div>
-            </div>
-            <div class="menu-item">
-                <img src="./img/sekuwa.jpg" alt="Sekuwa">
-                <p>Sekuwa</p>
-                <div class="price-tag">रु 249.99</div>
-            </div>
-            <div class="menu-item">
-                <img src="./img/Juju%20Dhau.jpg" alt="Juju Dhau">
-                <p>Juju Dhau</p>
-                <div class="price-tag">रु 99.99</div>
-            </div>
-        </div>
-    </section>
+<!-- HERO -->
+<header>
+  <div class="hero-bg"></div>
+  <svg class="mountain-silhouette" viewBox="0 0 1440 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 300 L120 180 L240 220 L360 100 L480 160 L600 60 L720 140 L840 80 L960 150 L1080 90 L1200 170 L1320 120 L1440 200 L1440 300 Z" fill="#F5EDD6"/>
+  </svg>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Est. 2024 · Bhadrapur, Jhapa</p>
+    <h1 class="hero-title">
+      Taste<br>
+      <span class="line-of">of</span><br>
+      Himalaya
+    </h1>
+    <p class="hero-sub">Your Gateway to Authentic Nepali Cuisine</p>
+    <a href="#menu" class="hero-cta">Explore Menu</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span class="scroll-label">Scroll</span>
+  </div>
+</header>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <h2>Visit Us</h2>
-        <p>Location: Bhadrapur, Jhapa, Nepal</p>
-        <p>Contact: <strong>9825969872</strong></p>
-    </section>
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marqueeTrack">
+    <span class="marquee-item">Momo</span>
+    <span class="marquee-item">Thukpa</span>
+    <span class="marquee-item">Dal Bhat</span>
+    <span class="marquee-item">Sel Roti</span>
+    <span class="marquee-item">Chowmein</span>
+    <span class="marquee-item">Gundruk</span>
+    <span class="marquee-item">Aloo Tama</span>
+    <span class="marquee-item">Sekuwa</span>
+    <span class="marquee-item">Juju Dhau</span>
+    <span class="marquee-item">Momo</span>
+    <span class="marquee-item">Thukpa</span>
+    <span class="marquee-item">Dal Bhat</span>
+    <span class="marquee-item">Sel Roti</span>
+    <span class="marquee-item">Chowmein</span>
+    <span class="marquee-item">Gundruk</span>
+    <span class="marquee-item">Aloo Tama</span>
+    <span class="marquee-item">Sekuwa</span>
+    <span class="marquee-item">Juju Dhau</span>
+  </div>
+</div>
 
-    <!-- Dialogflow Chatbot -->
-    <div class="chatbot-container">
-        <iframe
-            id="chatbotIframe"
-            width="350"
-            height="430"
-            allow="microphone;"
-            src="https://console.dialogflow.com/api-client/demo/embedded/18238ca4-a7e7-4fce-a4c6-03da1f32da0a">
-        </iframe>
+<!-- MENU -->
+<section id="menu">
+  <div class="menu-header reveal">
+    <div class="menu-header-left">
+      <p class="section-label">Our Offerings</p>
+      <h2 class="section-title">Flavorful<br><em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold)">Menu</em></h2>
+      <p class="menu-tagline">Every dish tells a story of the mountains. Hand-crafted with recipes passed down through generations.</p>
     </div>
+    <div class="menu-filter">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="main">Mains</button>
+      <button class="filter-btn" data-filter="snack">Snacks</button>
+      <button class="filter-btn" data-filter="dessert">Dessert</button>
+    </div>
+  </div>
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
 
-    <!-- Auto Triggering the Chatbot -->
-    <script>
-        window.onload = function () {
-            const chatbotIframe = document.getElementById("chatbotIframe");
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div class="about-card">🏔️</div>
+    <div class="about-float-stat">
+      <div class="about-float-num">9+</div>
+      <div class="about-float-lbl">Signature Dishes</div>
+    </div>
+  </div>
+  <div class="about-text reveal">
+    <p class="section-label">Our Story</p>
+    <h2 class="section-title">Rooted in the<br><em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold)">Himalayas</em></h2>
+    <p class="about-body">We bring the warmth of Nepali homes to your table. From the steaming momos of Kathmandu to the hearty dal bhat of the hills, every plate is a journey through Nepal's rich culinary heritage. Our kitchen honors tradition while welcoming everyone to the table.</p>
+    <div class="about-values">
+      <div class="value-item">
+        <div class="value-icon">🌿</div>
+        <div class="value-name">Fresh Ingredients</div>
+        <div class="value-desc">Locally sourced, daily prepared</div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">🔥</div>
+        <div class="value-name">Authentic Recipes</div>
+        <div class="value-desc">Traditional methods, real flavors</div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">🏠</div>
+        <div class="value-name">Homestyle Feel</div>
+        <div class="value-desc">Warm, welcoming, and familiar</div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">✨</div>
+        <div class="value-name">Made with Love</div>
+        <div class="value-desc">Every dish crafted with care</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            if (chatbotIframe) {
-                // Triggering the default welcome intent automatically
-                setTimeout(() => {
-                    // Sending a message to trigger the welcome intent in Dialogflow
-                    const message = {
-                        text: "Hi", // This triggers the welcome intent in Dialogflow
-                        languageCode: 'en', // Default language
-                    };
-                    chatbotIframe.contentWindow.postMessage(message, '*');
-                }, 1500);
-            }
-        };
-    </script>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="about-text reveal">
+    <p class="section-label">Find Us</p>
+    <h2 class="section-title">Come<br><em style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold)">Visit Us</em></h2>
+    <div class="contact-info-block">
+      <div class="contact-detail">
+        <div class="contact-detail-label">Location</div>
+        <div class="contact-detail-value">Bhadrapur, Jhapa, Nepal</div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-label">Phone</div>
+        <div class="contact-detail-value">9825969872</div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-label">Hours</div>
+        <div class="contact-detail-value">Daily · 10:00 AM – 9:00 PM</div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-map-placeholder reveal">
+    <div class="map-pin">📍</div>
+    <div class="map-text">Bhadrapur, Jhapa</div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Taste of Himalaya. All Rights Reserved.</p>
-    </footer>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Taste of Himalaya</div>
+  <div class="footer-copy">© 2024 Taste of Himalaya. All Rights Reserved.</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    <div class="modal-img-side" id="modalImgSide"></div>
+    <div class="modal-content">
+      <div>
+        <p class="modal-eyebrow" id="modalEyebrow"></p>
+        <h2 class="modal-title" id="modalTitle"></h2>
+      </div>
+      <div class="modal-price-row">
+        <span class="modal-price" id="modalPrice"></span>
+        <span class="modal-tag" id="modalTag"></span>
+      </div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-divider"></div>
+      <div class="modal-ingredients">
+        <h4>Key Ingredients</h4>
+        <div class="ingredient-pills" id="modalIngredients"></div>
+      </div>
+      <div class="modal-stats" id="modalStats"></div>
+      <button class="modal-order-btn" id="modalOrderBtn">Add to Order</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     CHATBOT — ENHANCED FLOATING UI
+     ═══════════════════════════════════════ -->
+<div class="chatbot-wrapper" id="chatbotWrapper">
+
+  <!-- Teaser bubble (auto-appears after delay) -->
+  <div class="chatbot-teaser" id="chatTeaser">
+    <button class="teaser-close" id="teaserClose" aria-label="Dismiss">✕</button>
+    <div class="teaser-header">
+      <div class="teaser-avatar">🏔</div>
+      <div>
+        <div class="teaser-name">Himalaya Assistant</div>
+        <div class="teaser-status"><span class="teaser-dot"></span> Online now</div>
+      </div>
+    </div>
+    <p class="teaser-msg"><strong>Namaste! 🙏</strong> Curious about our menu, prices, or today's specials? Ask me anything!</p>
+    <div class="teaser-chips">
+      <button class="teaser-chip" onclick="openChatWithMsg('What dishes do you recommend?')">Best dishes?</button>
+      <button class="teaser-chip" onclick="openChatWithMsg('What are your opening hours?')">Hours?</button>
+      <button class="teaser-chip" onclick="openChatWithMsg('Show me the full menu')">Full menu</button>
+    </div>
+  </div>
+
+  <!-- Chat window -->
+  <div class="chatbot-container" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div class="chatbot-header-left">
+        <div class="chatbot-header-avatar">🏔</div>
+        <div class="chatbot-header-info">
+          <div class="chatbot-header-name">Himalaya Assistant</div>
+          <div class="chatbot-header-sub"><span class="dot"></span> Online · Replies instantly</div>
+        </div>
+      </div>
+      <button class="chatbot-header-close" id="chatHeaderClose" aria-label="Close chat">✕</button>
+    </div>
+    <iframe
+      id="chatbotIframe"
+      allow="microphone;"
+      src="https://console.dialogflow.com/api-client/demo/embedded/18238ca4-a7e7-4fce-a4c6-03da1f32da0a">
+    </iframe>
+  </div>
+
+  <!-- "Chat with us" label tag -->
+  <div class="chat-label-tag" id="chatLabelTag">Chat with us!</div>
+
+  <!-- Main toggle button -->
+  <div class="chatbot-toggle" id="chatToggle" role="button" tabindex="0" aria-label="Open chat">
+    <!-- Chat icon -->
+    <svg class="icon-chat" viewBox="0 0 24 24"><path d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M20,16H5.17L4,17.17V4H20V16Z"/></svg>
+    <!-- Close icon -->
+    <svg class="icon-close" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>
+    <!-- Notification badge -->
+    <div class="chat-notif-badge" id="chatNotifBadge">1</div>
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ─────────────────── MENU DATA ─────────────────── */
+const menuData = [
+  {
+    id: 'momo', name: 'Momo', price: 'रु 149.99',
+    img: './img/momos.jpg', emoji: '🥟', category: 'snack', tag: 'Bestseller',
+    eyebrow: 'Nepali Dumpling',
+    desc: 'Delicate steamed dumplings filled with seasoned minced meat (or vegetables), folded in thin dough and served with spicy tomato-sesame achar. A national treasure, enjoyed across Nepal from street corners to family kitchens.',
+    ingredients: ['Minced Chicken', 'Onion', 'Garlic', 'Ginger', 'Coriander', 'Flour', 'Achar'],
+    stats: [{ val: '8 pcs', lbl: 'Per Serving' }, { val: '~320', lbl: 'Calories' }, { val: '25 min', lbl: 'Prep Time' }],
+    featured: true
+  },
+  {
+    id: 'thukpa', name: 'Thukpa', price: 'रु 99.99',
+    img: './img/chicken-thukpa.webp', emoji: '🍜', category: 'main', tag: 'Warming',
+    eyebrow: 'Tibetan Noodle Soup',
+    desc: 'A hearty noodle soup originating from the Himalayan regions, slow-simmered with vegetables, meat, and aromatic spices. Perfect for cold evenings — warming from the inside out.',
+    ingredients: ['Egg Noodles', 'Chicken', 'Carrot', 'Spinach', 'Soy Sauce', 'Chilli', 'Ginger'],
+    stats: [{ val: '1 bowl', lbl: 'Per Serving' }, { val: '~410', lbl: 'Calories' }, { val: '30 min', lbl: 'Prep Time' }]
+  },
+  {
+    id: 'dalbhat', name: 'Dal Bhat', price: 'रु 199.99',
+    img: './img/dal%20bhat.jpg', emoji: '🍱', category: 'main', tag: 'Complete Meal',
+    eyebrow: 'The Soul of Nepal',
+    desc: 'The heartbeat of Nepali cuisine — steamed rice served with lentil soup, seasonal vegetable curries, pickles, and papadum. Eaten twice a day across all of Nepal. A complete, balanced, and deeply comforting meal.',
+    ingredients: ['Rice', 'Lentils', 'Seasonal Veg', 'Ghee', 'Turmeric', 'Cumin', 'Achar'],
+    stats: [{ val: 'Full Set', lbl: 'Per Serving' }, { val: '~650', lbl: 'Calories' }, { val: '40 min', lbl: 'Prep Time' }]
+  },
+  {
+    id: 'selroti', name: 'Sel Roti', price: 'रु 89.99',
+    img: './img/sel%20roti.jpg', emoji: '🍩', category: 'snack', tag: 'Traditional',
+    eyebrow: 'Nepali Ring Bread',
+    desc: 'A traditional homemade sweet ring-shaped rice bread, deep-fried to golden perfection. Crispy on the outside, soft within — a festive staple especially during Dashain and Tihar, now enjoyed year-round.',
+    ingredients: ['Rice Flour', 'Sugar', 'Banana', 'Cardamom', 'Ghee', 'Water'],
+    stats: [{ val: '3 rings', lbl: 'Per Serving' }, { val: '~280', lbl: 'Calories' }, { val: '20 min', lbl: 'Prep Time' }]
+  },
+  {
+    id: 'chowmein', name: 'Chowmein', price: 'रु 129.99',
+    img: './img/chowmein.jpg', emoji: '🍝', category: 'main', tag: 'Street Fave',
+    eyebrow: 'Stir-fried Noodles',
+    desc: 'Nepali-style stir-fried noodles tossed with crunchy vegetables, eggs, and a blend of spices that gives it that unmistakable Newari street-food character. A beloved snack found in every corner of Nepal.',
+    ingredients: ['Noodles', 'Cabbage', 'Carrot', 'Egg', 'Soy Sauce', 'Chilli', 'Spring Onion'],
+    stats: [{ val: '1 plate', lbl: 'Per Serving' }, { val: '~380', lbl: 'Calories' }, { val: '15 min', lbl: 'Prep Time' }]
+  },
+  {
+    id: 'gundruk', name: 'Gundruk', price: 'रु 79.99',
+    img: './img/gundruk.jpg', emoji: '🥬', category: 'main', tag: 'Heritage',
+    eyebrow: 'Fermented Greens',
+    desc: "A quintessential Nepali side dish made from fermented leafy greens. Tangy, earthy, and deeply nutritious — Gundruk represents centuries of mountain food preservation wisdom and is a proud part of Nepal's food heritage.",
+    ingredients: ['Mustard Greens', 'Radish Leaves', 'Onion', 'Tomato', 'Chilli', 'Turmeric'],
+    stats: [{ val: '1 serving', lbl: 'Per Serving' }, { val: '~90', lbl: 'Calories' }, { val: '10 min', lbl: 'Prep Time' }]
+  },
+  {
+    id: 'alootama', name: 'Aloo Tama', price: 'रु 159.99',
+    img: './img/aloo%20tma.jpg', emoji: '🥔', category: 'main', tag: 'Classic',
+    eyebrow: 'Potato & Bamboo Curry',
+    desc: 'A beloved Newari curry combining potatoes, fermented bamboo shoots, and black-eyed peas in a tangy, spiced gravy. Bold, sour, and hearty — a dish that carries the unmistakable character of the Kathmandu Valley.',
+    ingredients: ['Potato', 'Bamboo Shoot', 'Black-eyed Peas', 'Turmeric', 'Cumin', 'Tomato'],
+    stats: [{ val: '1 bowl', lbl: 'Per Serving' }, { val: '~340', lbl: 'Calories' }, { val: '35 min', lbl: 'Prep Time' }]
+  },
+  {
+    id: 'sekuwa', name: 'Sekuwa', price: 'रु 249.99',
+    img: './img/sekuwa.jpg', emoji: '🍖', category: 'main', tag: 'Premium',
+    eyebrow: 'Spiced Grilled Meat',
+    desc: 'Marinated meat skewered and slow-grilled over charcoal flame until perfectly charred on the outside and juicy within. A staple of Nepali celebrations, infused with aromatic spices and a smoky mountain spirit.',
+    ingredients: ['Goat/Chicken', 'Cumin', 'Coriander', 'Ginger Garlic', 'Chilli', 'Mustard Oil', 'Jimbu'],
+    stats: [{ val: '6 skewers', lbl: 'Per Serving' }, { val: '~520', lbl: 'Calories' }, { val: '45 min', lbl: 'Prep Time' }]
+  },
+  {
+    id: 'jujudhau', name: 'Juju Dhau', price: 'रु 99.99',
+    img: './img/Juju%20Dhau.jpg', emoji: '🍮', category: 'dessert', tag: 'Royal Sweet',
+    eyebrow: 'King of Yogurt',
+    desc: 'The legendary "King of Yogurt" from Bhaktapur — thick, creamy, slightly sweet yogurt set in traditional clay pots. Its velvety texture and subtle sweetness make it the ultimate Nepali dessert. A geographical indications product of Nepal.',
+    ingredients: ['Full-fat Milk', 'Starter Culture', 'Sugar', 'Cardamom'],
+    stats: [{ val: '1 clay pot', lbl: 'Per Serving' }, { val: '~180', lbl: 'Calories' }, { val: '8 hrs', lbl: 'Set Time' }]
+  }
+];
+
+let activeFilter = 'all';
+
+function buildMenuGrid() {
+  const grid = document.getElementById('menuGrid');
+  grid.innerHTML = '';
+  const filtered = activeFilter === 'all' ? menuData : menuData.filter(d => d.category === activeFilter);
+  filtered.forEach((item, i) => {
+    const el = document.createElement('div');
+    el.className = 'menu-item' + (item.featured && i === 0 && activeFilter === 'all' ? ' featured' : '');
+    el.innerHTML = `
+      <img class="item-img" src="${item.img}" alt="${item.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="item-img-placeholder" style="display:none">${item.emoji}</div>
+      <div class="item-overlay"></div>
+      <div class="item-base-info">
+        <div class="item-name">${item.name}</div>
+        <div class="item-price">${item.price}</div>
+      </div>
+      <div class="item-meta"><div class="view-btn">View Details</div></div>
+    `;
+    el.addEventListener('click', () => openModal(item));
+    grid.appendChild(el);
+    setTimeout(() => el.style.opacity = '1', i * 70);
+  });
+}
+
+function openModal(item) {
+  document.getElementById('modalEyebrow').textContent = item.eyebrow;
+  document.getElementById('modalTitle').textContent = item.name;
+  document.getElementById('modalPrice').textContent = item.price;
+  document.getElementById('modalTag').textContent = item.tag;
+  document.getElementById('modalDesc').textContent = item.desc;
+  document.getElementById('modalImgSide').innerHTML = `
+    <img class="modal-img" src="${item.img}" alt="${item.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="modal-img-placeholder" style="display:none">${item.emoji}</div>
+    <div class="modal-img-tag">${item.category}</div>
+  `;
+  document.getElementById('modalIngredients').innerHTML = item.ingredients.map(ing => `<span class="pill">${ing}</span>`).join('');
+  document.getElementById('modalStats').innerHTML = item.stats.map(s => `
+    <div class="stat"><div class="stat-val">${s.val}</div><div class="stat-lbl">${s.lbl}</div></div>
+  `).join('');
+  document.getElementById('modalBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modalBackdrop').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.getElementById('modalOrderBtn').addEventListener('click', function() {
+  const name = document.getElementById('modalTitle').textContent;
+  closeModal();
+  showToast(`${name} added to your order! 🎉`);
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    activeFilter = this.dataset.filter;
+    buildMenuGrid();
+  });
+});
+
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+buildMenuGrid();
+
+/* ═══════════════════════════════════════
+   CHATBOT — ENHANCED LOGIC
+   ═══════════════════════════════════════ */
+const chatToggle    = document.getElementById('chatToggle');
+const chatbotWindow = document.getElementById('chatbotWindow');
+const chatbotIframe = document.getElementById('chatbotIframe');
+const chatTeaser    = document.getElementById('chatTeaser');
+const teaserClose   = document.getElementById('teaserClose');
+const chatHeaderClose = document.getElementById('chatHeaderClose');
+const chatNotifBadge  = document.getElementById('chatNotifBadge');
+const chatLabelTag    = document.getElementById('chatLabelTag');
+
+let hasWelcomed  = false;
+let teaserDismissed = false;
+let chatOpen = false;
+
+/* Auto-show teaser bubble after 4 seconds */
+setTimeout(() => {
+  if (!teaserDismissed && !chatOpen) {
+    chatTeaser.classList.add('visible');
+  }
+}, 4000);
+
+/* Dismiss teaser */
+teaserClose.addEventListener('click', (e) => {
+  e.stopPropagation();
+  dismissTeaser();
+});
+
+function dismissTeaser() {
+  teaserDismissed = true;
+  chatTeaser.classList.add('hiding');
+  setTimeout(() => {
+    chatTeaser.classList.remove('visible', 'hiding');
+  }, 400);
+}
+
+/* Open chat when a quick-chip is clicked */
+function openChatWithMsg(msg) {
+  dismissTeaser();
+  openChat();
+  if (!hasWelcomed) {
+    setTimeout(() => {
+      try {
+        chatbotIframe.contentWindow.postMessage({ text: msg, languageCode: 'en' }, '*');
+      } catch(err) {}
+      hasWelcomed = true;
+    }, 1200);
+  }
+}
+
+function openChat() {
+  chatOpen = true;
+  chatbotWindow.style.display = 'block';
+  /* Force reflow so transition fires */
+  void chatbotWindow.offsetWidth;
+  chatbotWindow.classList.add('active');
+  chatToggle.classList.add('open');
+  dismissTeaser();
+  /* Hide notification badge once chat is opened */
+  chatNotifBadge.style.display = 'none';
+  chatLabelTag.style.display = 'none';
+}
+
+function closeChat() {
+  chatOpen = false;
+  chatbotWindow.classList.remove('active');
+  chatToggle.classList.remove('open');
+  setTimeout(() => {
+    chatbotWindow.style.display = 'none';
+  }, 350);
+}
+
+chatToggle.addEventListener('click', () => {
+  if (chatOpen) {
+    closeChat();
+  } else {
+    openChat();
+    if (!hasWelcomed) {
+      setTimeout(() => {
+        try {
+          chatbotIframe.contentWindow.postMessage({ text: 'Hi', languageCode: 'en' }, '*');
+        } catch(err) {}
+        hasWelcomed = true;
+      }, 1000);
+    }
+  }
+});
+
+chatHeaderClose.addEventListener('click', closeChat);
+
+/* Keyboard accessibility */
+chatToggle.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') chatToggle.click();
+});
+
+/* Close chat when clicking outside the wrapper */
+document.addEventListener('click', (e) => {
+  if (chatOpen && !e.target.closest('#chatbotWrapper')) {
+    closeChat();
+  }
+});
+</script>
 </body>
 </html>
