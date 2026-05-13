@@ -5,11 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Taste of Himalaya</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-
-
 <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.css?v=1">
 <link rel="stylesheet" href="css/style.css">
-
 </head>
 <body>
 
@@ -21,7 +18,20 @@
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <!-- Hamburger button (mobile only) -->
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<!-- Mobile nav drawer -->
+<div class="nav-drawer" id="navDrawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <a href="#menu"   id="drawerMenu">Menu</a>
+  <a href="#about"  id="drawerAbout">About</a>
+  <a href="#contact" id="drawerContact">Contact</a>
+</div>
 
 <!-- HERO -->
 <header>
@@ -158,7 +168,7 @@
 </footer>
 
 <!-- MODAL -->
-<div class="modal-backdrop" id="modalBackdrop">
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
   <div class="modal" id="modal">
     <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
     <div class="modal-img-side" id="modalImgSide"></div>
@@ -183,16 +193,16 @@
   </div>
 </div>
 
-
+<!-- Dialogflow Chatbot -->
 <df-messenger
   agent-id="18238ca4-a7e7-4fce-a4c6-03da1f32da0a"
-  chat-title=" Himalaya Assistant"
+  chat-title="Himalaya Assistant"
   language-code="en"
   intent="WELCOME"
 ></df-messenger>
 
 <!-- TOAST -->
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 
@@ -283,8 +293,11 @@ function buildMenuGrid() {
   filtered.forEach((item, i) => {
     const el = document.createElement('div');
     el.className = 'menu-item' + (item.featured && i === 0 && activeFilter === 'all' ? ' featured' : '');
+    el.setAttribute('role', 'button');
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('aria-label', `View details for ${item.name}`);
     el.innerHTML = `
-      <img class="item-img" src="${item.img}" alt="${item.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img class="item-img" src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="item-img-placeholder" style="display:none">${item.emoji}</div>
       <div class="item-overlay"></div>
       <div class="item-base-info">
@@ -294,6 +307,7 @@ function buildMenuGrid() {
       <div class="item-meta"><div class="view-btn">View Details</div></div>
     `;
     el.addEventListener('click', () => openModal(item));
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openModal(item); });
     grid.appendChild(el);
     setTimeout(() => el.style.opacity = '1', i * 70);
   });
@@ -341,6 +355,7 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 3000);
 }
 
+/* ─── Filter buttons ─── */
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', function() {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -350,94 +365,51 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   });
 });
 
+/* ─── Scroll: sticky nav ─── */
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
-});
+}, { passive: true });
 
+/* ─── Reveal on scroll ─── */
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
+/* ─── Mobile hamburger nav ─── */
+const hamburger  = document.getElementById('navHamburger');
+const navDrawer  = document.getElementById('navDrawer');
+
+function openDrawer() {
+  hamburger.classList.add('open');
+  hamburger.setAttribute('aria-expanded', 'true');
+  navDrawer.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer() {
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  navDrawer.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => {
+  navDrawer.classList.contains('open') ? closeDrawer() : openDrawer();
+});
+
+/* Close drawer when a link is tapped */
+navDrawer.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', closeDrawer);
+});
+
+/* Close drawer on Escape */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && navDrawer.classList.contains('open')) closeDrawer();
+});
+
+/* ─── Init ─── */
 buildMenuGrid();
-
-
-
-
-
-function dismissTeaser() {
-  teaserDismissed = true;
-  chatTeaser.classList.add('hiding');
-  setTimeout(() => {
-    chatTeaser.classList.remove('visible', 'hiding');
-  }, 400);
-}
-
-/* Open chat when a quick-chip is clicked */
-function openChatWithMsg(msg) {
-  dismissTeaser();
-  openChat();
-  if (!hasWelcomed) {
-    setTimeout(() => {
-      try {
-        chatbotIframe.contentWindow.postMessage({ text: msg, languageCode: 'en' }, '*');
-      } catch(err) {}
-      hasWelcomed = true;
-    }, 1200);
-  }
-}
-
-function openChat() {
-  chatOpen = true;
-  chatbotWindow.style.display = 'block';
-  /* Force reflow so transition fires */
-  void chatbotWindow.offsetWidth;
-  chatbotWindow.classList.add('active');
-  chatToggle.classList.add('open');
-  dismissTeaser();
-  /* Hide notification badge once chat is opened */
-  chatNotifBadge.style.display = 'none';
-  chatLabelTag.style.display = 'none';
-}
-
-function closeChat() {
-  chatOpen = false;
-  chatbotWindow.classList.remove('active');
-  chatToggle.classList.remove('open');
-  setTimeout(() => {
-    chatbotWindow.style.display = 'none';
-  }, 350);
-}
-
-chatToggle.addEventListener('click', () => {
-  if (chatOpen) {
-    closeChat();
-  } else {
-    openChat();
-    if (!hasWelcomed) {
-      setTimeout(() => {
-        try {
-          chatbotIframe.contentWindow.postMessage({ text: 'Hi', languageCode: 'en' }, '*');
-        } catch(err) {}
-        hasWelcomed = true;
-      }, 1000);
-    }
-  }
-});
-
-chatHeaderClose.addEventListener('click', closeChat);
-
-/* Keyboard accessibility */
-chatToggle.addEventListener('keydown', e => {
-  if (e.key === 'Enter' || e.key === ' ') chatToggle.click();
-});
-
-/* Close chat when clicking outside the wrapper */
-document.addEventListener('click', (e) => {
-  if (chatOpen && !e.target.closest('#chatbotWrapper')) {
-    closeChat();
-  }
-});
 </script>
 </body>
 </html>
