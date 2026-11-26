@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Taste of Himalaya</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.css?v=1">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -193,18 +192,76 @@
   </div>
 </div>
 
-<!-- Dialogflow Chatbot -->
-<df-messenger
-  agent-id="18238ca4-a7e7-4fce-a4c6-03da1f32da0a"
-  chat-title="Himalaya Assistant"
-  language-code="en"
-  intent="WELCOME"
-></df-messenger>
+<!-- Self-Hosted NLP Chatbot Widget -->
+<div class="chatbot-wrapper" id="chatbotWrapper">
+  <!-- Teaser Bubble -->
+  <div class="chatbot-teaser" id="chatbotTeaser" role="region" aria-label="Chat assistant preview">
+    <button class="teaser-close" id="teaserClose" aria-label="Dismiss greeting">✕</button>
+    <div class="teaser-header">
+      <div class="teaser-avatar">🥟</div>
+      <div>
+        <div class="teaser-name">Himalaya Assistant</div>
+        <div class="teaser-status"><span class="teaser-dot"></span> Online</div>
+      </div>
+    </div>
+    <p class="teaser-msg">Namaste! Ready to order authentic <strong>Nepali food</strong> or track an order?</p>
+    <div class="teaser-chips">
+      <button type="button" class="teaser-chip" data-chat-prompt="New Order">New Order</button>
+      <button type="button" class="teaser-chip" data-chat-prompt="Track Order">Track Order</button>
+      <button type="button" class="teaser-chip" data-chat-prompt="Show Menu">Menu</button>
+    </div>
+  </div>
+
+  <!-- Chat Window -->
+  <div class="chatbot-container" id="chatbotContainer" role="dialog" aria-label="Taste of Himalaya Chatbot">
+    <div class="chatbot-header">
+      <div class="chatbot-header-left">
+        <div class="chatbot-header-avatar">🏔️</div>
+        <div>
+          <div class="chatbot-header-name">Taste of Himalaya</div>
+          <div class="chatbot-header-sub"><span class="dot"></span> NLP Order Assistant</div>
+        </div>
+      </div>
+      <div class="chatbot-header-actions">
+        <button type="button" class="chatbot-header-close" id="chatResetBtn" title="Reset conversation" aria-label="Reset conversation">↺</button>
+        <button type="button" class="chatbot-header-close" id="chatCloseBtn" title="Close chat" aria-label="Close chat">✕</button>
+      </div>
+    </div>
+
+    <div class="chat-cart-bar" id="chatCartBar"></div>
+    <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
+    <div class="chat-quick-replies" id="chatQuickReplies"></div>
+
+    <form class="chat-input-form" id="chatInputForm" autocomplete="off">
+      <input
+        type="text"
+        class="chat-input"
+        id="chatInput"
+        placeholder="Say '2 Momo and 1 Thukpa'..."
+        maxlength="500"
+        aria-label="Type your message"
+      />
+      <button type="submit" class="chat-send-btn" id="chatSendBtn" aria-label="Send message">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- Floating Toggle Button -->
+  <span class="chat-label-tag" id="chatLabelTag">Order with AI</span>
+  <button type="button" class="chatbot-toggle" id="chatbotToggle" aria-label="Open chatbot" aria-expanded="false">
+    <span class="chat-notif-badge" id="chatNotifBadge">1</span>
+    <svg class="icon-chat" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/>
+    </svg>
+    <svg class="icon-close" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+    </svg>
+  </button>
+</div>
 
 <!-- TOAST -->
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 
 <script>
 /* ─────────────────── MENU DATA ─────────────────── */
@@ -344,7 +401,9 @@ document.getElementById('modalBackdrop').addEventListener('click', function(e) {
 document.getElementById('modalOrderBtn').addEventListener('click', function() {
   const name = document.getElementById('modalTitle').textContent;
   closeModal();
-  showToast(`${name} added to your order! 🎉`);
+  showToast(`Adding 1 ${name} via Assistant... 🥟`);
+  openChat();
+  sendChatMessage(`Add 1 ${name}`);
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
@@ -407,6 +466,208 @@ navDrawer.querySelectorAll('a').forEach(link => {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && navDrawer.classList.contains('open')) closeDrawer();
 });
+
+/* ─────────────────── SELF-HOSTED NLP CHATBOT ─────────────────── */
+const chatElements = {
+  teaser: document.getElementById('chatbotTeaser'),
+  teaserClose: document.getElementById('teaserClose'),
+  container: document.getElementById('chatbotContainer'),
+  toggle: document.getElementById('chatbotToggle'),
+  closeBtn: document.getElementById('chatCloseBtn'),
+  resetBtn: document.getElementById('chatResetBtn'),
+  messages: document.getElementById('chatMessages'),
+  quickReplies: document.getElementById('chatQuickReplies'),
+  cartBar: document.getElementById('chatCartBar'),
+  form: document.getElementById('chatInputForm'),
+  input: document.getElementById('chatInput'),
+  sendBtn: document.getElementById('chatSendBtn'),
+  badge: document.getElementById('chatNotifBadge'),
+  labelTag: document.getElementById('chatLabelTag'),
+};
+
+function getOrCreateSessionId() {
+  const key = 'himalaya_chat_session_id';
+  let id = sessionStorage.getItem(key);
+  if (!id) {
+    id = (window.crypto && crypto.randomUUID)
+      ? crypto.randomUUID()
+      : 'sess-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+    sessionStorage.setItem(key, id);
+  }
+  return id;
+}
+
+let chatSessionId = getOrCreateSessionId();
+let chatInitialized = false;
+let chatBusy = false;
+let teaserDismissed = false;
+
+function appendMessage(text, sender) {
+  const bubble = document.createElement('div');
+  bubble.className = `chat-msg ${sender}`;
+  bubble.textContent = text;
+  chatElements.messages.appendChild(bubble);
+  chatElements.messages.scrollTop = chatElements.messages.scrollHeight;
+  return bubble;
+}
+
+function showTypingIndicator() {
+  const el = document.createElement('div');
+  el.className = 'chat-typing';
+  el.id = 'chatTypingIndicator';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  chatElements.messages.appendChild(el);
+  chatElements.messages.scrollTop = chatElements.messages.scrollHeight;
+}
+
+function removeTypingIndicator() {
+  const el = document.getElementById('chatTypingIndicator');
+  if (el) el.remove();
+}
+
+function renderQuickReplies(replies) {
+  chatElements.quickReplies.innerHTML = '';
+  (replies || []).forEach(label => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'teaser-chip';
+    btn.textContent = label;
+    btn.addEventListener('click', () => sendChatMessage(label));
+    chatElements.quickReplies.appendChild(btn);
+  });
+}
+
+function renderCartBar(cart) {
+  const entries = Object.entries(cart || {});
+  if (entries.length === 0) {
+    chatElements.cartBar.classList.remove('has-items');
+    chatElements.cartBar.innerHTML = '';
+    return;
+  }
+  const summary = entries.map(([item, qty]) => `${qty} ${item}`).join(', ');
+  chatElements.cartBar.classList.add('has-items');
+  chatElements.cartBar.innerHTML = '';
+  const span = document.createElement('span');
+  span.textContent = `Cart: ${summary}`;
+  const strong = document.createElement('strong');
+  strong.textContent = 'Active';
+  chatElements.cartBar.appendChild(span);
+  chatElements.cartBar.appendChild(strong);
+}
+
+function hideTeaser() {
+  teaserDismissed = true;
+  chatElements.teaser.classList.remove('visible');
+  chatElements.teaser.classList.add('hiding');
+}
+
+function openChat() {
+  hideTeaser();
+  chatElements.container.classList.add('active');
+  chatElements.toggle.classList.add('open');
+  chatElements.toggle.setAttribute('aria-expanded', 'true');
+  if (chatElements.badge) chatElements.badge.style.display = 'none';
+  if (chatElements.labelTag) chatElements.labelTag.style.display = 'none';
+
+  if (!chatInitialized) {
+    chatInitialized = true;
+    appendMessage(
+      'Namaste! Welcome to Taste of Himalaya. How can I help you today? You can say "New Order", "Track Order", or "Show Menu".',
+      'bot'
+    );
+    renderQuickReplies(['New Order', 'Track Order', 'Show Menu']);
+  }
+  setTimeout(() => chatElements.input.focus(), 100);
+}
+
+function closeChat() {
+  chatElements.container.classList.remove('active');
+  chatElements.toggle.classList.remove('open');
+  chatElements.toggle.setAttribute('aria-expanded', 'false');
+}
+
+async function sendChatMessage(rawText) {
+  const text = (rawText || '').trim();
+  if (!text || chatBusy) return;
+
+  chatBusy = true;
+  chatElements.sendBtn.disabled = true;
+  chatElements.input.value = '';
+  appendMessage(text, 'user');
+  renderQuickReplies([]);
+  showTypingIndicator();
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text, session_id: chatSessionId }),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    if (data.session_id) {
+      chatSessionId = data.session_id;
+      sessionStorage.setItem('himalaya_chat_session_id', chatSessionId);
+    }
+    removeTypingIndicator();
+    appendMessage(data.reply || 'Sorry, something went wrong.', 'bot');
+    renderCartBar(data.cart);
+    renderQuickReplies(data.quick_replies);
+  } catch (err) {
+    removeTypingIndicator();
+    appendMessage('Could not reach the assistant right now. Please try again in a moment.', 'bot');
+    renderQuickReplies(['New Order', 'Track Order', 'Show Menu']);
+  } finally {
+    chatBusy = false;
+    chatElements.sendBtn.disabled = false;
+    chatElements.input.focus();
+  }
+}
+
+async function resetChat() {
+  try {
+    await fetch('/api/reset', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: chatSessionId }),
+    });
+  } catch (_) {
+    // Ignore network error on reset
+  }
+  chatElements.messages.innerHTML = '';
+  renderCartBar({});
+  appendMessage(
+    'Conversation reset! Namaste — say "New Order", "Track Order", or "Show Menu" to begin.',
+    'bot'
+  );
+  renderQuickReplies(['New Order', 'Track Order', 'Show Menu']);
+}
+
+chatElements.toggle.addEventListener('click', () => {
+  chatElements.container.classList.contains('active') ? closeChat() : openChat();
+});
+chatElements.closeBtn.addEventListener('click', closeChat);
+chatElements.resetBtn.addEventListener('click', resetChat);
+chatElements.teaserClose.addEventListener('click', hideTeaser);
+
+chatElements.teaser.querySelectorAll('[data-chat-prompt]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const prompt = btn.getAttribute('data-chat-prompt');
+    openChat();
+    sendChatMessage(prompt);
+  });
+});
+
+chatElements.form.addEventListener('submit', e => {
+  e.preventDefault();
+  sendChatMessage(chatElements.input.value);
+});
+
+setTimeout(() => {
+  if (!teaserDismissed && !chatElements.container.classList.contains('active')) {
+    chatElements.teaser.classList.add('visible');
+  }
+}, 3500);
 
 /* ─── Init ─── */
 buildMenuGrid();

@@ -1,0 +1,301 @@
+{
+  "entities": {
+    "food-item": [
+      {
+        "value": "Momo",
+        "synonyms": [
+          "momo",
+          "momos",
+          "jhol momo",
+          "chicken momo",
+          "veg momo",
+          "buff momo",
+          "steam momo",
+          "fried momo",
+          "dumpling",
+          "dumplings"
+        ]
+      },
+      {
+        "value": "Chowmein",
+        "synonyms": [
+          "chowmein",
+          "chow mein",
+          "chicken chowmein",
+          "veg chowmein",
+          "buff chowmein",
+          "noodles",
+          "chomein"
+        ]
+      },
+      {
+        "value": "Juju Dhau",
+        "synonyms": [
+          "juju dhau",
+          "jujudhau",
+          "juju",
+          "dhau",
+          "king curd",
+          "curd",
+          "yogurt"
+        ]
+      },
+      {
+        "value": "Dal Bhat",
+        "synonyms": [
+          "dal bhat",
+          "dalbhat",
+          "dal chawal",
+          "khana set",
+          "veg khana",
+          "rice",
+          "bhat",
+          "dal"
+        ]
+      },
+      {
+        "value": "Sel Roti",
+        "synonyms": [
+          "sel roti",
+          "selroti",
+          "sel",
+          "roti",
+          "syal"
+        ]
+      },
+      {
+        "value": "Aloo Tama",
+        "synonyms": [
+          "aloo tama",
+          "alu tama",
+          "aalu tama",
+          "alootama",
+          "aloo",
+          "alu",
+          "tama"
+        ]
+      },
+      {
+        "value": "Thukpa",
+        "synonyms": [
+          "thukpa",
+          "veg thukpa",
+          "chicken thukpa",
+          "buff thukpa",
+          "thuppa",
+          "thupa",
+          "noodle soup"
+        ]
+      },
+      {
+        "value": "Gundruk",
+        "synonyms": [
+          "gundruk ko achar",
+          "gundruk achar",
+          "gundruk",
+          "achar"
+        ]
+      },
+      {
+        "value": "Sekuwa",
+        "synonyms": [
+          "sekuwa",
+          "chicken sekuwa",
+          "mutton sekuwa",
+          "buff sekuwa",
+          "pork sekuwa",
+          "sekua"
+        ]
+      }
+    ]
+  },
+  "intents": {
+    "welcome": {
+      "contexts": [],
+      "examples": [
+        "hi",
+        "hello",
+        "hey",
+        "namaste",
+        "yo",
+        "greeting",
+        "greetings",
+        "good morning",
+        "good afternoon",
+        "good evening",
+        "anyone",
+        "anyone there",
+        "available here",
+        "availabe here",
+        "help",
+        "start"
+      ],
+      "responses": [
+        "Namaste! Welcome to Taste of Himalaya. How can I help you today? You can say \"New Order\", \"Track Order\", or \"Show Menu\"."
+      ]
+    },
+    "menu": {
+      "contexts": [],
+      "examples": [
+        "menu",
+        "show menu",
+        "show me the menu",
+        "what is on the menu",
+        "what do you have",
+        "what food is available",
+        "food list",
+        "list items",
+        "prices",
+        "how much is momo",
+        "what can i order"
+      ],
+      "responses": []
+    },
+    "new.order": {
+      "contexts": [],
+      "examples": [
+        "new order",
+        "new",
+        "i want to order",
+        "i would like to order",
+        "place new order",
+        "generate new order",
+        "start a new order",
+        "start order",
+        "order food",
+        "can i order"
+      ],
+      "responses": [
+        "Starting a new order! You can say things like \"I want 2 plates of Momo and 1 bowl of Thukpa.\" Make sure to include a quantity for each item.\n\nOur menu: Momo, Thukpa, Dal Bhat, Sel Roti, Chowmein, Gundruk, Aloo Tama, Sekuwa, and Juju Dhau."
+      ]
+    },
+    "order.add": {
+      "contexts": ["ongoing-order"],
+      "examples": [
+        "i would like to order two plates of momo one chowmein and 3 juju dhau please",
+        "can you please get me two servings of momo one chowmein and one juju dhau",
+        "please prepare 2 portions of momo along with one chowmein and 1 juju dhau for me",
+        "3 plates of dal bhat 2 juju dhau 1 sel roti",
+        "can i get 2 plates of momo along with one chowmein and 1 juju dhau",
+        "i will take 2 orders of momo one chowmein and 1 juju dhau",
+        "i want 1 juju dhau 2 plates of momo and one sel roti",
+        "in addition add 1 plate of aloo tama and 2 plates of thukpa",
+        "moreover include 2 juju dhau",
+        "also please give me 2 juju dhau",
+        "2 plates of thukpa and let us add one dal bhat too",
+        "oh yes add one sel roti as well",
+        "additionally i would like 2 juju dhau",
+        "add 2 momo",
+        "give me 1 sekuwa",
+        "include gundruk achar",
+        "thukpa also",
+        "order 2 momos",
+        "get me 1 dal bhat"
+      ],
+      "responses": []
+    },
+    "order.remove": {
+      "contexts": ["ongoing-order"],
+      "examples": [
+        "remove momo",
+        "remove thukpa",
+        "exclude thukpa",
+        "delete momo from my order",
+        "take out chowmein",
+        "drop sel roti",
+        "cancel sekuwa",
+        "i do not want dal bhat",
+        "no momo please",
+        "remove 1 momo",
+        "take off gundruk"
+      ],
+      "responses": []
+    },
+    "order.view": {
+      "contexts": ["ongoing-order"],
+      "examples": [
+        "show my order",
+        "what is in my order",
+        "view cart",
+        "my cart",
+        "current order",
+        "check my cart"
+      ],
+      "responses": []
+    },
+    "order.complete": {
+      "contexts": ["ongoing-order"],
+      "examples": [
+        "done",
+        "ok",
+        "okay",
+        "no",
+        "nope",
+        "nothing else",
+        "that is all",
+        "that is all i need",
+        "that is it",
+        "this much",
+        "place an order",
+        "place order",
+        "confirm order",
+        "complete order",
+        "checkout",
+        "finish order",
+        "yes confirm"
+      ],
+      "responses": []
+    },
+    "track.order": {
+      "contexts": [],
+      "examples": [
+        "track order",
+        "track existing order",
+        "track my order",
+        "check the status of my order",
+        "order status",
+        "where is my order",
+        "where is my food",
+        "status of my order"
+      ],
+      "responses": [
+        "Definitely! Please enter your order ID (for example, try 40, 41, or 42)."
+      ]
+    },
+    "track.order.id": {
+      "contexts": ["ongoing-tracking"],
+      "examples": [
+        "how about 852",
+        "my order id is 652",
+        "id is 57",
+        "order 40",
+        "order id 41",
+        "number 42",
+        "12",
+        "40",
+        "41"
+      ],
+      "responses": []
+    },
+    "final.words": {
+      "contexts": [],
+      "examples": [
+        "thank you",
+        "thanks",
+        "thanks a lot",
+        "bye",
+        "goodbye",
+        "see you",
+        "nice talking to you",
+        "lovely",
+        "i love you",
+        "sorry",
+        "shut up",
+        "hate you"
+      ],
+      "responses": [
+        "Thank you for visiting Taste of Himalaya! Have a wonderful day! 😊"
+      ]
+    }
+  }
+}
