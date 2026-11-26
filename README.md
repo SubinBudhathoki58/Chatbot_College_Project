@@ -1,6 +1,6 @@
 # Taste of Himalaya — NLP Food Delivery Chatbot
 
-An NLP-based Nepali food ordering and tracking chatbot built as a CSIT final-year project, redesigned to run **100% free (no credit card)** on **Vercel + Neon PostgreSQL** with a **self-hosted Python NLP engine** (zero Google Cloud / Dialogflow dependency).
+An NLP-based Nepali food ordering and tracking chatbot built as a CSIT final-year project, redesigned to run free on **Vercel + Neon PostgreSQL** with a **self-hosted Python NLP engine**.
 
 ## Architecture
 
@@ -35,24 +35,6 @@ An NLP-based Nepali food ordering and tracking chatbot built as a CSIT final-yea
 ├── vercel.json
 └── .env.example
 ```
-
-## Deploy for Free on Neon + Vercel (No Credit Card)
-
-### 1. Create a Free Neon Database
-1. Sign up at [neon.tech](https://neon.tech) (with GitHub — no credit card required).
-2. Click **New Project** (e.g., `himalaya-chatbot`) and choose a region close to your users.
-3. Copy the **Connection String** (PostgreSQL URI starting with `postgresql://...`).
-   - *(Optional)* You can run `database/schema_postgres.sql` inside Neon's **SQL Editor**, or skip it — the backend automatically creates and seeds the tables on the first API request!
-
-### 2. Deploy on Vercel
-1. Push this repository to GitHub.
-2. Sign up / log in at [vercel.com](https://vercel.com) (Hobby plan — free, no credit card required).
-3. Click **Add New → Project** and import your GitHub repo.
-4. Under **Environment Variables**, add:
-   - **Key:** `DATABASE_URL`
-   - **Value:** *(paste your Neon connection string)*
-5. Click **Deploy**.
-6. Once live, visit `https://<your-app>.vercel.app/api/health` to confirm `"database": "neon-postgres"` and `"connected": true`, then open `https://<your-app>.vercel.app` and test the chatbot!
 
 ## Local Development
 
